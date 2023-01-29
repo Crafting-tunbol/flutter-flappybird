@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'game.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,27 +11,22 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+
     return MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: const Scaffold(
-          backgroundColor: Colors.black,
-          body: MyHomePage(),
-        ));
-  }
-}
+        home: Scaffold(
+          backgroundColor: Colors.blue,
+          body: Builder(
+            builder: (context) {
+              double screenWidth = MediaQuery.of(context).size.width;
+              double screenHeight = MediaQuery.of(context).size.height;
 
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({Key? key}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text(
-        "Bonjour le Dojo !",
-        style: TextStyle(fontSize: 24, color: Colors.white),
-      ),
-    );
+              return Game(screenWidth, screenHeight);
+            }
+          ),
+        ));
   }
 }
